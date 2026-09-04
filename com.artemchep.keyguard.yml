@@ -22,8 +22,8 @@ modules:
       - type: archive
         only-arches:
           - x86_64
-        url: https://github.com/AChep/keyguard-app/releases/download/r20260819.2/Keyguard-3.0.4-linux-x86_64.tar.gz
-        sha256: 0bc073ebe7ca50a09a9fcf0202dfe511a4118e0da4f3fce3dc69842fb10dfabc
+        url: https://github.com/AChep/keyguard-app/releases/download/r20260904/Keyguard-3.1.0-linux-x86_64.tar.gz
+        sha256: 3326a2136d5de8132523acecbe734fc1403e97ee669f928205f354ba35ae550d
         x-checker-data:
           type: html
           url: https://api.github.com/repos/AChep/keyguard-app/releases/latest
@@ -31,8 +31,8 @@ modules:
       - type: archive
         only-arches:
           - aarch64
-        url: https://github.com/AChep/keyguard-app/releases/download/r20260819.2/Keyguard-3.0.4-linux-aarch64.tar.gz
-        sha256: 025145bc6eace7bfddf83869e483a35606af12316d354a237ed336f1d788ca45
+        url: https://github.com/AChep/keyguard-app/releases/download/r20260904/Keyguard-3.1.0-linux-aarch64.tar.gz
+        sha256: 3d48988fa98f08fe1111d034c2ec99ba2b67b5294aa0a5d367917f7b66dca5cd
         x-checker-data:
           type: html
           url: https://api.github.com/repos/AChep/keyguard-app/releases/latest
