@@ -12,8 +12,29 @@ finish-args:
   - --device=all
   - --filesystem=xdg-download
   - --filesystem=xdg-run/gnupg:create
+  # Browser extension: the native messaging manifests of the browsers on the host.
+  # No :create, so the sandbox sees only the folders that exist, which is how it
+  # tells which browsers are used.
+  - --filesystem=xdg-config/google-chrome/NativeMessagingHosts
+  - --filesystem=xdg-config/chromium/NativeMessagingHosts
+  - --filesystem=xdg-config/microsoft-edge/NativeMessagingHosts
+  - --filesystem=xdg-config/BraveSoftware/Brave-Browser/NativeMessagingHosts
+  - --filesystem=xdg-config/vivaldi/NativeMessagingHosts
+  - --filesystem=~/.mozilla/native-messaging-hosts
+  # The same folders of the browsers from Flathub. Keyguard copies its connector
+  # there and its CLI agent listens next to it: their sandboxes see nothing else.
+  - --filesystem=~/.var/app/com.google.Chrome/config/google-chrome/NativeMessagingHosts
+  - --filesystem=~/.var/app/org.chromium.Chromium/config/chromium/NativeMessagingHosts
+  - --filesystem=~/.var/app/com.microsoft.Edge/config/microsoft-edge/NativeMessagingHosts
+  - --filesystem=~/.var/app/com.brave.Browser/config/BraveSoftware/Brave-Browser/NativeMessagingHosts
+  - --filesystem=~/.var/app/org.mozilla.firefox/.mozilla/native-messaging-hosts
   - --talk-name=org.kde.StatusNotifierWatcher
   - --system-talk-name=org.freedesktop.PolicyKit1
+  # glibc gives the threads that allocate at the same time a malloc arena each,
+  # up to eight per core, and the app has about a hundred of them: hundreds of
+  # megabytes that hold almost nothing. Only the environment can cap them, and
+  # only here: outside of a sandbox the programs the app starts would inherit it.
+  - --env=MALLOC_ARENA_MAX=2
 modules:
   - name: keyguard
     buildsystem: simple
